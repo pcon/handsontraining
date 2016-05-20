@@ -39,12 +39,144 @@
 				</div> <!-- .sidebar -->
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 					<p class="alert alert-info" role="alert"><i class="glyphicon glyphicon-info-sign"></i> This is a work in progress.</p>
-					<h1>Intro</h1>
-					<p>Lori ipsum</p>
+					<h1>Setup</h1>
+					<p>The hands-on training is based on the default developer edition organization and has some customizations that must be done prior to starting with the rest of the exercises</p>
+					<ol>
+						<li>Sign up for a new <a href="https://developer.salesforce.com/signup">Developer Edition</a></li>
+						<li>Change the priority field on the case to only have <code>High</code> and <code>Normal</code>
+							<ol>
+								<li>Click <b>Setup | Customize | Cases | Fields</b></li>
+								<li>Click <b>Priority</b></li>
+								<li>Ciick <b>Edit</b> next to <b>Low</b></li>
+								<li>Check <code>Make this value the default for the master picklist</code></li>
+								<li>Click <b>Save</b></li>
+								<li>Click <b>Del</b> next to <b>Medium</b></li>
+							</ol>
+						</li>
+						<li>Create a new Owner Comment Count field
+							<ol>
+								<li>Click <b>Setup | Customize | Cases | Fields</b></li>
+								<li>Click <b>New</b> under <b>Case Custom Fields &amp; Relationships</b></li>
+								<li>Choose <code>Number</code> and click <b>Next</b></li>
+								<li>Fill in the following information
+									<dl class="dl-horizontal" style="margin-bottom: 0px;">
+										<dt style="margin-top: 0px;">Field Label</dt>
+										<dd>Owner Comment Count</dd>
+										<dt>Length</dt>
+										<dd>18</dd>
+										<dt>Decimal Places</dt>
+										<dd>0</dd>
+										<dt>Field Name</dt>
+										<dd>Owner_Comment_Count</dd>
+									</dl>
+								</li>
+								<li>Click <b>Next</b></li>
+								<li>Click <b>Next</b></li>
+								<li>Click <b>Save</b></li>
+							</ol>
+						</li>
+						<li>Remove all page layouts for Case except <code>Case Layout</code>
+							<ol>
+								<li>Click <b>Setup | Customize | Cases | Page Layouts</b></li>
+								<li>Click <b>Del</b> next to <b>Case (Marketing) Layout</b></li>
+								<li>Click <b>Replace</b></li>
+								<li>Repeat B-C for <b>Case (Sales) Layout</b></li>
+								<li>Repeat B-C for <b>Case (Support) Layout</b></li>
+							</ol>
+						</li>
+						<li>Add <code>Business Hours</code> to the case layout
+							<ol>
+								<li>Click <b>Setup | Customize | Cases | Page Layouts</b></li>
+								<li>Click <b>Edit</b> next to <b>Case Layout</b></li>
+								<li>Drag the <code>Business Hours</code> field onto the page layout</li>
+								<li>Click <b>Save</b></li>
+							</ol>
+						</li>
+						<li>Add a new breach email template
+							<ol>
+								<li>Click <b>Setup | Communication Templates | Email Templates</b></li>
+								<li>Click <b>New Template</b></li>
+								<li>Choose <code>Text</code></li>
+								<li>Click <b>Next</b></li>
+								<li>Fill in the following information
+									<dl class="dl-horizontal" style="margin-bottom: 0px;">
+										<dt style="margin-top: 0px;">Folder</dt>
+										<dd>Unfiled Public Email Templates</dd>
+										<dt>Template Name</dt>
+										<dd>Support: Case has breached</dd>
+										<dt>Unique Name</dt>
+										<dd>Support_Case_has_breached</dd>
+										<dt>Subject</dt>
+										<dd>Case {!Case.CaseNumber} has breached SLA</dd>
+										<dt>Body</dt>
+										<dd><pre style="max-width: 350px">Case Number: {!Case.CaseNumber}
+Subject: {!Case.Subject}</pre></dd>
+									</dl>
+								</li>
+								<li>Click <b>Save</b></li>
+							</ol>
+						</li>
+						<li>Create the <code>CaseCommentCount</code> trigger
+							<ol>
+								<li>Click <b>Setup | Develop | Apex Triggers</b></li>
+								<li>Click <b>Developer Console</b></li>
+								<li>Click <b>File | New | Apex Trigger</b></li>
+								<li>Fill in the following information and click <b>Submit</b>
+									<dl class="dl-horizontal" style="margin-bottom: 0px;">
+										<dt style="margin-top: 0px;">Name</dt>
+										<dd>CaseCommentCount</dd>
+										<dt>sObject</dt>
+										<dd>Case</dd>
+									</dl>
+								</li>
+								<li>Replace the contents with the following
+									<pre>trigger CaseCommentCount on CaseComment (after insert, after delete) {
+	Set&lt;Id&gt; ownerIds = new Set&lt;Id&gt;();
+	Set&lt;Id&gt; caseIds = new Set&lt;Id&gt;();
+	Map&lt;Id, Integer&gt; commentCount = new Map&lt;Id, Integer&gt;();
+
+	List&lt;CaseComment&gt; comments = (Trigger.isInsert) ?
+	Trigger.new : Trigger.old;
+
+	for (CaseComment cc : comments) {
+		caseIds.add(cc.ParentId);
+		commentCount.put(cc.ParentId, 0);
+	}
+
+	for (Case c : [select OwnerId from Case where Id in :caseIds]) {
+		ownerIds.add(c.OwnerId);
+	}
+
+	for (CaseComment cc : [
+		select CreatedById,
+			ParentId
+		from CaseComment
+		where ParentId in :caseIds and
+		CreatedById in :ownerIds
+	]) {
+		commentCount.put(cc.ParentId,
+			commentCount.get(cc.ParentId) + 1
+		);
+	}
+
+	List&lt;Case&gt; casesToUpdate = new List&lt;Case&gt;();
+
+	for (Id id : commentCount.keySet()) {
+		casesToUpdate.add(new Case(
+			Id = id,
+			Owner_Comment_Count__c = commentCount.get(id)
+		));
+	}
+
+	update casesToUpdate;
+} </pre>
+							</ol>
+						</li>
+					</ol>
 					<nav>
 						<ul class="pager">
-							<li class="previous"><a href=""><span aria-hidden="true">&larr;</span> Previous</a></li>
-							<li class="next"><a href="">Next <span aria-hidden="true">&rarr;</span></a></li>
+							<li class="previous"><a href="01_introduction.html"><span aria-hidden="true">&larr;</span> Previous</a></li>
+							<li class="next"><a href="03_business_hours_and_holidays.html">Next <span aria-hidden="true">&rarr;</span></a></li>
 						</ul>
 					</nav>
 				</div>

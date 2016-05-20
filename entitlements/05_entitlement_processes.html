@@ -16,10 +16,10 @@
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 	</head>
-	<body>
+	<body data-spy="scroll" data-target="#sidebar">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-3 col-md-2 sidebar">
+				<div class="col-sm-3 col-md-2 sidebar" id="sidebar">
 					<ul class="nav nav-sidebar">
 						<li><a href="index.html">Home</a></li>
 					</ul>
@@ -28,7 +28,15 @@
 						<li><a href="02_setup.html">Setup</a></li>
 						<li><a href="03_business_hours_and_holidays.html">Business Hours &amp; Holidays</a></li>
 						<li><a href="04_entitlement_management.html">Entitlement Management</a></li>
-						<li class="active"><a href="05_entitlement_processes.html">Entitlement Processes <span class="sr-only">(current)</span></a></li>
+						<li class="active"><a href="05_entitlement_processes.html">Entitlement Processes <span class="sr-only">(current)</span></a>
+							<ul class="nav nav-subnav">
+								<li><a href="#topic">Topic</a></li>
+								<li><a href="#exercise">Exercise 3</a></li>
+								<li><a href="#goal">Goal</a></li>
+								<li><a href="#scenario">Scenario</a></li>
+								<li><a href="#instructions">Instructions</a></li>
+							</ul>
+						</li>
 						<li><a href="06_milestone_actions.html">Milestone Actions</a></li>
 						<li><a href="07_cases_and_entitlements.html">Cases &amp; Entitlements</a></li>
 						<li><a href="08_more_reading.html">More Reading</a></li>
@@ -37,14 +45,28 @@
 						<li><a href="about_author.html">About Author</a></li>
 					</ul>
 				</div> <!-- .sidebar -->
-				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="topic">
 					<p class="alert alert-info" role="alert"><i class="glyphicon glyphicon-info-sign"></i> This is a work in progress.</p>
-					<h1>Intro</h1>
-					<p>Lori ipsum</p>
+					<h1>Entitlement Processes</h1>
+					<p>Entitlement processes are where you finally take your defined SLAs and turn them into something actionable.  The determine how the case will behave while under it's influence.</p>
+					<img src="i/entitlement_processes_advanced.png" alt="New entitlement process advanced options">
+					<p>As part of the creation of a new entitlement process, you can define when your process case enters the process
+						<ul>
+							<li><b>Based on case created date &ldash;</b> This is when the case is created.  Typically, this is the option you would use</li>
+							<li><b>Based on a custom date/time field on the case &ldash;</b> This allows you to choose a field on the case to use.  This is useful if your entitlement process does not start until after an action occurs.  For example if a case must be vetted then a datetime field is set starting the process</li>
+						</ul>
+					</p>
+					<p>You can also set when the case exits this process
+						<ul>
+							<li><b>Based on when the case is closed &ldash;</b> Again, this is typically the option you would choose</li>
+							<li><b>Based on custom criteria &ldash;</b> This allows you to set custom criteria for when the process exits.  This is useful for you consider a case resolved based on something other than the case's status.  For example if a solution is verified or a knowledge article is written</li>
+						</ul>
+					</p>
+					<p class="alert alert-info" role="alert"><i class="glyphicon glyphicon-info-sign"></i> When a entitlement process exits, it does not mark any in-progress milestones as completed. For this to happen you will have to add a <a href="https://help.salesforce.com/HTViewHelpDoc?id=entitlements_milestones_trigger.htm">custom trigger</a></p>
 
 					<hr />
 
-					<h1 id="exercise">Exercise 3: Exercise 3: Create Entitlement Processes and Milestones</h1>
+					<h1 id="exercise">Exercise 3: Create Entitlement Processes and Milestones</h1>
 
 					<h3 id="goal">Goal:</h3>
 					<p>Create case milestones and create entitlement processes.</p>
@@ -88,6 +110,8 @@
 						<li>Create Premium and Standard entitlement processes</li>
 						<li>Add case milestones to meet your expected response times</li>
 					</ol>
+
+					<h2 id="instructions">Instructions:</h2>
 
 					<nav>
 						<ul class="pager">

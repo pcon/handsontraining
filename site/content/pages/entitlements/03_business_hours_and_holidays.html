@@ -1,0 +1,135 @@
+{% extends "entitlements.html" %}
+{% set page.title = "Business Hours &amp; Holidays" %}
+{% set page.nav = "bh" %}
+{% set page.prev = "02_setup.html" %}
+{% set page.next = "04_entitlement_management.html" %}
+
+{% block content %}
+<h1>Business Hours &amp; Holidays</h1>
+<h3>Business Hours</h3>
+<p>Business hours define either your companies working hours or the working hours of your customers. Unlike "real world" hours, business hours run from a preset start time to an end time.  Any timers that rely on business hours pause at the end time and resume on the next active day.</p>
+<p>In a support center with only a single shift it makes the most sense to use your center's opererating hours as the base for your business hours.  In the diagram below, we can see the business hours for a single shift support center.  The teal color band represents the working hours of the support center while the dark blue color represents the off hours for the center.  In the example below, a case with an SLA of 4 business hours starts at 5pm, pauses at 6pm (the end of the business day), restarts at 9am (the start of the next business day) and then breaches at noon.</p>
+<img class="img-responsive center-block" src="{{site.urlRoot}}images/entitlements/business_hours.png" alt="Business hours graph" />
+<br />
+<p>In a support center with multiple shifts (or geographically seperated centers) it may make work better to have business hours based on where your customers are located so that their working hours line up correctly with a single business hour.  For example having seperate business hours for customers in London, New York and Los Angeles with the start and end time being the same but the timezone differing</p>
+<p class="alert alert-warning" role="alert"><i class="glyphicon glyphicon-info-sign"></i> It is also important to note that not all areas work Monday - Friday. For example some parts of the Middle East work Sunday - Thursday<sup><a class="text-warning" href="https://en.wikipedia.org/wik{{site.urlRoot}}images/entitlements/Workweek_and_weekend">[1]</a></sup></p>
+<p>When doing a model where each Case could have a different business hour be mindful of the hierachy of the business hours<sup><a href="https://help.salesforce.com/HTViewHelpDoc?id=customize_supporthours_guidelines.htm&language=en_US">[2]</a></sup>.</p>
+<ul>
+	<li>Milestone</li>
+	<li>Entitlement Process</li>
+	<li>Case</li>
+</ul>
+<p class="alert alert-info" role="alert"><i class="glyphicon glyphicon-info-sign"></i> If you want a per-Account business hour this can be achieved by adding a Lookup field and adding a before trigger to the case.</p>
+
+<h3>Holidays</h3>
+<p>Holidays act as exceptions to your business hours.  They can be a single full day, multiple days or even span a couple of hours.  If a holiday includes the business hours of a Case then the milestone pauses the same way it does when exiting the end of a business day.</p>
+<p>If you use business hours, it is completely optional to use holidays</p>
+
+<hr />
+
+<h1 id="exercise">Exercise 1: Create Business Hours and Holidays</h1>
+
+<h3 id="goal">Goal:</h3>
+<p>Create several custom business hours and a custom holiday.</p>
+
+<h3 id="scenario">Scenario:</h3>
+<p>You are configuring your instance for a new support center. You support center offers three different business hour options. These options are 9x5, 9x7 and 24x7. However you do not offer support for the Fribsday holiday for your customers that do not have 24x7 support.</p>
+
+<h3>Tasks:</h3>
+<ol>
+	<li>Create business hours for each of your supported hours.</li>
+	<li>Create a holiday for <i>Fribsday</i></li>
+</ol>
+
+<p class="alert alert-info" role="alert"><i class="glyphicon glyphicon-info-sign"></i> Fribsday is the most casual of holidays as prophesied by the ancient Mayans</p>
+
+<hr />
+
+<h2 id="instructions">Instructions:</h2>
+<ol>
+	<li>Create the 9x5 business hours.
+		<ol>
+			<li>Click <b>Setup | Company Profile | Business Hours</b>.</li>
+			<li>Click <b>Edit</b>, next to the <i>Default</i> business hour and fill in the following information.
+				<dl class="dl-horizontal" style="margin-bottom: 0px">
+					<dt style="margin-top: 0px;">Name</dt>
+					<dd>9x5</dd>
+					<dt>Use these business<br />hours as the default</dt>
+					<dd><i class="glyphicon glyphicon-ok"></i></dd>
+					<dt>Active</dt>
+					<dd><i class="glyphicon glyphicon-ok"></i></dd>
+					<dt>Timezone</dt>
+					<dd>(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)</dd>
+					<dt>Business Hours</dt>
+					<dd><img class="img-responsive" src="{{site.urlRoot}}images/entitlements/business_hours_9x5.png" /></dd>
+				</dl>
+			</li>
+			<li>Click <b>Save</b></li>
+		</ol>
+	</li>
+	<li>Create the 9x7 business hours
+		<ol>
+			<li>Click <b>New Business Hours</b>.</li>
+			<li>Fill in the following information.
+				<dl class="dl-horizontal" style="margin-bottom: 0px">
+					<dt style="margin-top: 0px;">Name</dt>
+					<dd>9x7</dd>
+					<dt>Use these business<br />hours as the default</dt>
+					<dd><i class="glyphicon glyphicon-ok"></i></dd>
+					<dt>Active</dt>
+					<dd><i class="glyphicon glyphicon-ok"></i></dd>
+					<dt>Timezone</dt>
+					<dd>(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)</dd>
+					<dt>Business Hours</dt>
+					<dd><img class="img-responsive" src="{{site.urlRoot}}images/entitlements/business_hours_9x7.png" /></dd>
+				</dl>
+			</li>
+			<li>Click <b>Save</b></li>
+		</ol>
+	</li>
+	<li>Create the 24x7 business hours
+		<ol>
+			<li>Click <b>New Business Hours</b>.</li>
+			<li>Fill in the following information.
+				<dl class="dl-horizontal" style="margin-bottom: 0px">
+					<dt style="margin-top: 0px;">Name</dt>
+					<dd>24x7</dd>
+					<dt>Use these business<br />hours as the default</dt>
+					<dd><i class="glyphicon glyphicon-ok"></i></dd>
+					<dt>Active</dt>
+					<dd><i class="glyphicon glyphicon-ok"></i></dd>
+					<dt>Timezone</dt>
+					<dd>(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)</dd>
+					<dt>Business Hours</dt>
+					<dd><img class="img-responsive" src="{{site.urlRoot}}images/entitlements/business_hours_24x7.png" /></dd>
+				</dl>
+			</li>
+			<li>Click <b>Save</b></li>
+		</ol>
+	</li>
+	<li>Create the Fribsday holiday
+		<ol>
+			<li>Click <b>Company Profile | Holiday</b></li>
+			<li>Click <b>New</b></li>
+			<li>Fill in the following information
+				<dl class="dl-horizontal" style="margin-bottom: 0px">
+					<dt style="margin-top: 0px;">Name</dt>
+					<dd>Fribsday</dd>
+					<dt>Description</dt>
+					<dd>The most casual of days</dd>
+					<dt>Date</dt>
+					<dd>The date of tomorrow</dd>
+					<dt>Time (All day)</dt>
+					<dd><i class="glyphicon glyphicon-unchecked"></i></dd>
+					<dt>Recurring Holiday</dt>
+					<dd><i class="glyphicon glyphicon-ok"></i></dd>
+				</dl>
+			</li>
+			<li>Click <b>Save</b></li>
+			<li>Under <i>Business Hours</i> click <b>Add/Remove</b></li>
+			<li>Choose <i>9x5</i> and <i>9x7</i> and add them to the Selected Business Hours column</li>
+			<li>Click <b>Save</b></li>
+		</ol>
+	</li>
+</ol>
+{% endblock %}

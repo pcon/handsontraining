@@ -1,0 +1,26 @@
+sudo: false
+branches:
+  only:
+  - master
+language: node_js
+node_js:
+- 1.5.1
+install:
+- npm install -g gulp
+- npm install
+before_script:
+- git remote set-url origin "https://${GH_TOKEN}@github.com/pcon/checkstyle.git"
+- git config --global user.email "patrick@deadlypenguin.com"
+- git config --global user.name "Travis-CI"
+script:
+- gulp deploy
+env:
+  global:
+    - URL_ROOT=/handsontraining/
+    secure: a6KAa2C/eJqDCDtLqmrG65cjkst1R3EzZGk+VTMbMfMNF8Zzz7SZ7W9XUb/2AqJa5N2X2+Hl/7JmDO1Q9MYLQJl7OTmrhia+ZqEb2DWqlXNZ/UMUNE+ooeIr1Go8EQehudEnwstqNAYsENhf0XDI4MB5wlygdLsRbubD8BhcE6Ckm87OxITfgfkuQ8ocaoo8lLmhiHlam6AtcoNjAPp9rHfcYNSylfCmxTnFBme+OsjCSfun01Aevr/x1XXh23M8Hyh1SzF3oslPqVs3FYjyNKYGdxD2oNfqTnHkWEgDeHyG2n4KXE2VaLtDXhjRnpuaQbYKKyCc+314tAj29wRruawPlZhwVkJcaBVYAfjUpkOanpx5OfUh6OjY+7N7axIpw1oIaiFKAkMcdd3UHX9emZ/sfRKh0h/XfqkQSMfpPR0H1meGF/cZcF39papZ/gLMB5Wa+wChZ4khDKiaE68YoF3tltTUK8mRgWOKOqrwj0IA/SIg2DQHlZOs+OGbq80yxiiTcqCX8K12RtKYNauKfSt+QLklu5ZDkbJygU1v3PQ7PR1nlMWn3whI4nIgPF4NH0I2yOBUAJy7bHI9qGw8czgBCKj5nqFaqL7KXx+p0awzmiC2fZBxyyFtyZXOc24dnZ/cTNovWO1CND3z6jmYCrpyQke5fZOUNMZ++q0P+BA=
+notifications:
+  email:
+    recipients:
+    - patrick@deadlypenguin.com
+    on_success: always
+    on_failure: always

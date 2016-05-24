@@ -1,0 +1,112 @@
+{% extends "entitlements.html" %}
+{% set page.title = "Entitlement Management" %}
+{% set page.nav = "management" %}
+{% set page.prev = "03_business_hours_and_holidays.html" %}
+{% set page.next = "05_entitlement_processes.html" %}
+
+{% block content %}
+<h1>Entitlement Management</h1>
+<p>The Entitlement Management section of Setup is where you go to enable and manage the Entitlement process</p>
+<h2>Enabling Entitlement Management</h2>
+<img class="img-responsive" src="{{site.urlRoot}}images/entitlements/entitlement_management_first.png">
+<p>If you have not enabled Entitlement Management, you will first need to enable it for your org</p>
+<p class="alert alert-warning" role="alert"><i class="glyphicon glyphicon-info-sign"></i> In order to have the Entitlement Management option available you must have Service Cloud user licenses</p>
+<h2>Entitlement Management Settings</h2>
+<p>After enabling Entitlement Management, you'll be given several sections that you can configure</p>
+<h3>Versioning</h3>
+<img class="img-responsive" src="{{site.urlRoot}}images/entitlements/entitlement_management_versioning.png">
+<p>Entitlement versioning allows you easily group your entitlement process and it's versions</p>
+<p class="alert alert-info" role="alert"><i class="glyphicon glyphicon-info-sign"></i> Even with versioning enabled, you still have the same limit on the total number of entitlement processes you can have. Every version counts as a seperate entitlement process</p>
+<h3>Lookup Filters</h3>
+<img class="img-responsive" src="{{site.urlRoot}}images/entitlements/entitlement_management_filters.png">
+<p>These built-in lookup filters allow you to determine how the Entitlements are filtered when applying them to your case.  I recommend that you at least use the <code>Active Status</code> and <code>Same account on case</code> to help you maintain healthy data</p>
+<h3>Milestone Feed Items</h3>
+<img class="img-responsive" src="{{site.urlRoot}}images/entitlements/entitlement_management_feed.png">
+<p>This setting puts entitlement milestone information into the Chatter feed for the Case</p>
+<h3>Mileston Tracker</h3>
+<img class="img-responsive" src="{{site.urlRoot}}images/entitlements/entitlement_management_tracker.png">
+<p>This setting shows the amount of time remaining in "real world" hours instead of business hours.  If you are starting out with Entitlements in your organization, this might be a useful setting since people can often be confused by Business Hours</p>
+
+<hr />
+
+<h1 id="exercise">Exercise 2: Enable Entitlement Management and Setup Case Page</h1>
+
+<h3 id="goal">Goal:</h3>
+<p>Enable entitlement management and add entitlement information to case layout.</p>
+
+<h3 id="scenario">Scenario:</h3>
+<p>To reduce the amount of custom work you have to do, you decide to use the standard Entitlement object and use it with your support cases.</p>
+
+<h3>Tasks:</h3>
+<ol>
+	<li>Enable Entitlement Management</li>
+	<li>Configure Entitlement Management</li>
+	<li>Set Field Level Security for Entitlement related fields</li>
+	<li>Add fields to Case Layout</li>
+	<li>Add related list Account Layout</li>
+</ol>
+
+<hr />
+
+<h2 id="instructions">Instructions:</h2>
+<ol>
+	<li>Enable Entitlement Management
+		<ol>
+			<li>Click <b>Customize | Entitlement Management | Settings</b></li>
+			<li>Check <code>Enable Entitlement Management</code></li>
+			<li>Click <b>Save</b></li>
+		</ol>
+	</li>
+	<li>Configure Entitlement Management
+		<ol>
+			<li>Check <code>Enable Entitlement Versioning</code></li>
+			<li>Under <b>Entitlement Lookup</b> check the following fields <img class="img-responsive" src="{{site.urlRoot}}images/entitlements/entitlement_management_filters_chosen.png" /></li>
+			<li>Click <b>Save</b></li>
+		</ol>
+	</li>
+	<li>Set Field Level Security for Entitlement fields
+		<ol>
+			<li>Click <b>Customize | Cases | Fields</b></li>
+			<li>Click <b>Entitlement Name</b></li>
+			<li>Click <b>Set Field-Level Security</b></li>
+			<li>Select <code>Visible</code> for all Profiles</li>
+			<li>Click <b>Save</b></li>
+			<li>Repeat A-E for
+				<ul>
+					<li>Business Hours</li>
+					<li>Entitlement Process End Time</li>
+					<li>Entitlement Process Start Time</li>
+					<li>Milestone Status</li>
+					<li>Milestone Status Icon</li>
+				</ul>
+			</li>
+		</ol>
+	</li>
+	<li>Add fields to Case Layout
+		<ol>
+			<li>Click <b>Customize | Cases | Page Layouts</b></li>
+			<li>Click <b>Edit</b> next to <b>Case Layout</b></li>
+			<li>Add the following fields to the page layout:
+				<ul>
+					<li>Entitlement Name</li>
+					<li>Entitlement</li>
+					<li>Process End Time</li>
+					<li>Entitlement Process Start Time</li>
+					<li>Milestone Status</li>
+					<li>Milestone Status Icon</li>
+				</ul>
+			</li>
+			<li>Add the Case Milestones related list</li>
+			<li>Click <b>Save</b></li>
+		</ol>
+	</li>
+	<li>Add related lists to Account Layout
+		<ol>
+			<li>Click <b>Customize | Accounts | Page Layouts</b></li>
+			<li>Click <b>Edit</b> next to <b>Account Layout</b></li>
+			<li>Add the Entitlements related list</li>
+			<li>Click <b>Save</b></li>
+		</ol>
+	</li>
+</ol>
+{% endblock %}

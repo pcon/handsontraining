@@ -1,0 +1,74 @@
+{% extends "entitlements.html" %}
+{% set page.title = "Entitlement Processes" %}
+{% set page.nav = "processes" %}
+{% set page.prev = "04_entitlement_management.html" %}
+{% set page.next = "06_milestone_actions.html" %}
+
+{% block content %}
+<h1>Entitlement Processes &amp; Milestones</h1>
+<h2>Milestones</h2>
+<p>Milestones are what your goals are for the case.  They could be as simple as "Resolve Case" or as complex as an ongoing response, a temporary resolution provided or a code fix delivered.  In Salesforce, the milestones have no real functionality, they are simply labels that are created to be moved around by your entitlement process</p>
+<h2>Entitlement Processes</h2>
+<p>Entitlement processes are where you finally take your defined SLAs and turn them into something actionable.  The determine how the case will behave while under it's influence.</p>
+<img src="{{site.urlRoot}}images/entitlements/entitlement_processes_advanced.png" alt="New entitlement process advanced options">
+<p>As part of the creation of a new entitlement process, you can define when your process case enters the process
+	<ul>
+		<li><b>Based on case created date &ldash;</b> This is when the case is created.  Typically, this is the option you would use</li>
+		<li><b>Based on a custom date/time field on the case &ldash;</b> This allows you to choose a field on the case to use.  This is useful if your entitlement process does not start until after an action occurs.  For example if a case must be vetted then a datetime field is set starting the process</li>
+	</ul>
+</p>
+<p>You can also set when the case exits this process
+	<ul>
+		<li><b>Based on when the case is closed &ldash;</b> Again, this is typically the option you would choose</li>
+		<li><b>Based on custom criteria &ldash;</b> This allows you to set custom criteria for when the process exits.  This is useful for you consider a case resolved based on something other than the case's status.  For example if a solution is verified or a knowledge article is written</li>
+	</ul>
+</p>
+<p class="alert alert-info" role="alert"><i class="glyphicon glyphicon-info-sign"></i> When a entitlement process exits, it does not mark any in-progress milestones as completed. For this to happen you will have to add a <a href="https://help.salesforce.com/HTViewHelpDoc?id=entitlements_milestones_trigger.htm">custom trigger</a></p>
+
+<hr />
+
+<h1 id="exercise">Exercise 3: Create Entitlement Processes and Milestones</h1>
+
+<h3 id="goal">Goal:</h3>
+<p>Create case milestones and create entitlement processes.</p>
+
+<h3 id="scenario">Scenario:</h3>
+<p>Your support organization offers Premium and Standard levels of support based on the table below.</p>
+
+<table class="table table-bordered">
+	<tr>
+		<td colspan="2"></td>
+		<td class="text-center"><i>High</i></td>
+		<td class="text-center"><i>Normal</i></td>
+	</tr>
+	<tr>
+		<td rowspan="2" class="text-right"><i>Premium</i></td>
+		<td><b>First Response</b></td>
+		<td>1 Hour</td>
+		<td>6 Hours</td>
+	</tr>
+	<tr>
+		<td><b>Case Closure</b></td>
+		<td>2 Business Days</td>
+		<td>6 Business Days</td>
+	</tr>
+	<tr>
+		<td rowspan="2" class="text-right"><i>Standard</i></td>
+		<td><b>First Response</b></td>
+		<td>4 Business Hours</td>
+		<td>12 Business Hours</td>
+	</tr>
+	<tr>
+		<td><b>Case Closure</b></td>
+		<td>4 Business Days</td>
+		<td>8 Business Days</td>
+	</tr>
+</table>
+
+<h3>Tasks:</h3>
+<ol>
+	<li>Create the First Response and Case Closure milestones</li>
+	<li>Create Premium and Standard entitlement processes</li>
+	<li>Add case milestones to meet your expected response times</li>
+</ol>
+{% endblock %}

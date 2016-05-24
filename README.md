@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/pcon/handsontraining.svg?branch=master)](https://travis-ci.org/pcon/handsontraining)
+
 # [Launch Hands On Training](http://pcon.github.io/handsontraining/)
 
 # Hands On Trainings

@@ -35,14 +35,15 @@
 <h3 id="scenario">Scenario:</h3>
 <p>Your support organization offers Premium and Standard levels of support based on the table below.</p>
 
-<table class="table table-bordered">
-	<tr>
-		<td colspan="2"></td>
+<table class="table table-bordered table-process">
+	<tr class="label-severity">
+		<td class="border-none"></td>
+		<td></td>
 		<td class="text-center"><i>High</i></td>
 		<td class="text-center"><i>Normal</i></td>
 	</tr>
 	<tr>
-		<td rowspan="2" class="text-right"><i>Premium</i></td>
+		<td rowspan="2" class="text-right label-level"><i>Premium</i></td>
 		<td><b>First Response</b></td>
 		<td>1 Hour</td>
 		<td>6 Hours</td>
@@ -53,7 +54,7 @@
 		<td>6 Business Days</td>
 	</tr>
 	<tr>
-		<td rowspan="2" class="text-right"><i>Standard</i></td>
+		<td rowspan="2" class="text-right label-level"><i>Standard</i></td>
 		<td><b>First Response</b></td>
 		<td>4 Business Hours</td>
 		<td>12 Business Hours</td>
@@ -65,10 +66,196 @@
 	</tr>
 </table>
 
+<p class="alert alert-info" role="alert"><i class="glyphicon glyphicon-info-sign"></i> Based on our business hours, a business day consists of 9hrs. So these must be converted to minutes based on that.</p>
+<p>To aid in the math, the table below is the conversion of hours to minutes</p>
+
+<table class="table table-bordered table-process">
+	<tr class="label-severity">
+		<td class="border-none"></td>
+		<td></td>
+		<td class="text-center"><i>High</i></td>
+		<td class="text-center"><i>Normal</i></td>
+	</tr>
+	<tr>
+		<td rowspan="2" class="text-right label-level"><i>Premium</i></td>
+		<td><b>First Response</b></td>
+		<td>60 Minutes</td>
+		<td>360 Minutes</td>
+	</tr>
+	<tr>
+		<td><b>Case Closure</b></td>
+		<td>1080 Minutes</td>
+		<td>3240 Minutes</td>
+	</tr>
+	<tr>
+		<td rowspan="2" class="text-right label-level"><i>Standard</i></td>
+		<td><b>First Response</b></td>
+		<td>240 Minutes</td>
+		<td>720 Minutes</td>
+	</tr>
+	<tr>
+		<td><b>Case Closure</b></td>
+		<td>2160 Minutes</td>
+		<td>4320 Minutes</td>
+	</tr>
+</table>
+<p class="alert alert-warning" role="alert"><i class="glyphicon glyphicon-info-sign"></i> <b>Example:</b> For standard-high, 4 business days x 9 business hours x 60 minutes == 2160 minutes</p>
+
 <h3>Tasks:</h3>
 <ol>
 	<li>Create the First Response and Case Closure milestones</li>
 	<li>Create Premium and Standard entitlement processes</li>
 	<li>Add case milestones to meet your expected response times</li>
+</ol>
+
+<hr />
+
+<h2 id="instructions">Instructions</h2>
+<ol>
+	<li>Create the First Response and Case Resolution milestone
+		<ol>
+			<li>Click <b>Customize | Entitlement Management | Milestones</b></li>
+			<li>Click <b>New Milestone</b></li>
+			<li>Fill in the following information.
+				<dl class="dl-horizontal">
+					<dt>Name</dt>
+					<dd>First Response</dd>
+					<dt>Description</dt>
+					<dd>The first response to the case</dd>
+					<dt>Recurrence Type</dt>
+					<dd>No Recurrence</dd>
+				</dl>
+			</li>
+			<li>Click <b>Save &amp; New</b></li>
+			<li>Fill in the following information.
+				<dl class="dl-horizontal">
+					<dt>Name</dt>
+					<dd>Case Resolution</dd>
+					<dt>Description</dt>
+					<dd>The resolution of the case</dd>
+					<dt>Recurrence Type</dt>
+					<dd>Independent</dd>
+				</dl>
+			</li>
+			<li>Click <b>Save</b></li>
+		</ol>
+	</li>
+	<li>Create the Premium entitlement process
+		<ol>
+			<li>Click <b>Customize | Entitlement Management | Entitlement Processes</b></li>
+			<li>Click <b>New Entitlement Process</b></li>
+			<li>Fill in the following information.
+				<dl class="dl-horizontal">
+					<dt>Entitlement Process Name</dt>
+					<dd>Premium</dd>
+					<dt>Description</dt>
+					<dd>The premium entitlement process</dd>
+					<dt>Active</dt>
+					<dd><i class="glyphicon glyphicon-ok"></i></dd>
+					<dt>Version Notes</dt>
+					<dd>Initial version</dd>
+				</dl>
+			</li>
+			<li>Leave the advanced options as the default.</li>
+			<li>Click <b>Save</b></li>
+		</ol>
+	</li>
+	<li>Add the case milestones to the Premium entitlement process
+		<ol>
+			<li>Under the Milestone section, click <b>New</b></li>
+			<li>Fill in the following information.
+				<dl class="dl-horizontal">
+					<dt>Milestone Name</dt>
+					<dd>First Response</dd>
+					<dt>Trigger Time</dt>
+					<dd>60</dd>
+					<dt>Start Time</dt>
+					<dd>Entitlement Process</dd>
+					<dt>Milestone Business Hours</dt>
+					<dd>24x7</dd>
+					<dt>Order</dt>
+					<dd>1</dd>
+					<dt>Criteria<dt>
+					<dd><img class="img-responsive" src="{{site.urlRoot}}images/entitlements/entitlement_process_high_first_response.png" /></dd>
+				</dl>
+			</li>
+			<li>Click <b>Save</b></li>
+			<li>Repeat steps A-C for <i>Normal</i></li>
+			<li>Under the <i>Milestone section</i>, click <b>New</b></li>
+			<li>Fill in the following information.
+				<dl class="dl-horizontal">
+					<dt>Milestone Name</dt>
+					<dd>Case Resolution</dd>
+					<dt>Trigger Time</dt>
+					<dd>1080</dd>
+					<dt>Start Time</dt>
+					<dd>Milestone Criteria</dd>
+					<dt>Order</dt>
+					<dd>3</dd>
+					<dt>Criteria</dt>
+					<dd><img class="img-responsive" src="{{site.urlRoot}}images/entitlements/entitlement_process_high_resolution.png" /></dd>
+				</dl>
+			</li>
+			<li>Repeat steps E-F for <i>Normal</i></li>
+		</ol>
+	</li>
+	<li>Create the Standard entitlement process
+		<ol>
+			<li>Click <b>Customize | Entitlement Management | Entitlement Processes</b></li>
+			<li>Click <b>New Entitlement Process</b></li>
+			<li>Fill in the following information.
+				<dl class="dl-horizontal">
+					<dt>Entitlement Process Name</dt>
+					<dd>Standard</dd>
+					<dt>Description</dt>
+					<dd>The standard entitlement process</dd>
+					<dt>Active</dt>
+					<dd>checked</dd>
+					<dt>Version Notes</dt>
+					<dd>Initial version</dd>
+				</dl>
+			</li>
+			<li>Leave the advanced options as the default.</li>
+			<li>Click <b>Save</b></li>
+		</ol>
+	<li>Add the case milestones to the Standard entitlement process
+		<ol>
+			<li>Under the Milestone section, click <b>New</b></li>
+			<li>Fill in the following information.
+				<dl class="dl-horizontal">
+					<dt>Milestone Name</dt>
+					<dd>First Response</dd>
+					<dt>Trigger Time</dt>
+					<dd>240</dd>
+					<dt>Start Time</dt>
+					<dd>Entitlement Process</dd>
+					<dt>Milestone Business Hours</dt>
+					<dd>&lt;blank&gt;</dd>
+					<dt>Order</dt>
+					<dd>1</dd>
+					<dt>Criteria is set to the following</dt>
+					<dd><img class="img-responsive" src="{{site.urlRoot}}images/entitlements/entitlement_process_high_first_response.png" /></dd>
+				</dl>
+			</li>
+			<li>Click <b>Save</b></li>
+			<li>Repeat steps A-C for <i>Normal</i></li>
+			<li>Under the Milestone section, click <b>New</b></li>
+			<li>Fill in the following information.
+				<dl class="dl-horizontal">
+					<dt>Milestone Name</dt>
+					<dd>Case Resolution</dd>
+					<dt>Trigger Time</dt>
+					<dd>2160</dd>
+					<dt>Start Time</dt>
+					<dd>Milestone Criteria</dd>
+					<dt>Order</dt>
+					<dd>3</dd>
+					<dt>Criteria is set to the following</dt>
+					<dd><img class="img-responsive" src="{{site.urlRoot}}images/entitlements/entitlement_process_high_resolution.png" /></dd>
+				</dl>
+			</li>
+			<li>Repeat steps E-F for <li>Normal</i></li>
+		</ol>
+	</li>
 </ol>
 {% endblock %}

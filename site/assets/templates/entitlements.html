@@ -61,8 +61,29 @@
 							</ul>
 							{% endif %}
 						</li>
-						<li {% if page.nav == "actions" %}class="active"{% endif %}><a href="06_milestone_actions.html">Milestone Actions</a></li>
-						<li {% if page.nav == "cases" %}class="active"{% endif %}><a href="07_cases_and_entitlements.html">Cases &amp; Entitlements</a></li>
+						<li {% if page.nav == "actions" %}class="active"{% endif %}><a href="06_milestone_actions.html">Milestone Actions</a>
+							{% if page.nav == "actions" %}
+							<ul class="nav nav-subnav">
+								<li><a href="#topic">Topic</a></li>
+								<li><a href="#exercise">Exercise</a></li>
+								<li><a href="#goal">Goal</a></li>
+								<li><a href="#scenario">Scenario</a></li>
+								<li><a href="#instructions">Instructions</a></li>
+							</ul>
+							{% endif %}
+						</li>
+						<li {% if page.nav == "cases" %}class="active"{% endif %}><a href="07_cases_and_entitlements.html">Cases &amp; Entitlements</a>
+							{% if page.nav == "cases" %}
+							<ul class="nav nav-subnav">
+								<li><a href="#topic">Topic</a></li>
+								<li><a href="#exercise">Exercise</a></li>
+								<li><a href="#goal">Goal</a></li>
+								<li><a href="#scenario">Scenario</a></li>
+								<li><a href="#instructions">Instructions</a></li>
+							</ul>
+							{% endif %}
+
+						</li>
 						<li {% if page.nav == "more" %}class="active"{% endif %}><a href="08_more_reading.html">More Reading</a></li>
 					</ul>
 					<ul class="nav nav-sidebar">

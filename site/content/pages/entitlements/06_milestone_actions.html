@@ -5,6 +5,115 @@
 {% set page.next = "07_cases_and_entitlements.html" %}
 
 {% block content %}
-<h1>Intro</h1>
-<p>Lori ipsum</p>
+<h1>Milestone Actions</h1>
+<p>Milestone actions are what happens when your milestones hit a designated time.  Inside your entitlement process, you sepecify when the action will occur (relative to other the entitlement processes breach time) and then what the actions will be.</p>
+<h2>Mileston Action Types</h2>
+<p>The type of actions that are available for use are</p>
+<ul>
+	<li><b>New Task</b> &mdash; This action lets you create a task on a case</li>
+	<li><b>New Email Alert</b> &mdash; This action lets you create an email alert</li>
+	<li><b>New Field Update</b> &mdash; This action lets you update a field on the case</li>
+	<li><b>New Outbound Message</b> &mdash; This action lets you send outbound messages to external systems</li>
+	<li><b>Select Existing Action</b> &mdash; This allows you to re-use existing actions across multiple entitlement processes</li>
+</ul>
+<p class="alert alert-info" role="alert"><i class="glyphicon glyphicon-info-sign"></i> When creating multiple entitlement processes, reusability is your friend.  Create your tasks, emails, updates or messages beforehand and use existing actions. This will mean you only have one place to update if needed.</p>
+
+<hr />
+
+<h1 id="exercise">Exercise 4: Create Milestone Actions</h1>
+
+<h3 id="goal">Goal:</h3>
+<p>Create actions that occur when the case breaches it's SLA</p>
+<h3 id="scenario">Scenario:</h3>
+<p>If a violation of the SLA occurs, then the case owners should be notified via email. If a high priority case breaches a new Task should be created for the SVP, Customer Service &amp; Support to follow up on the case.</p>
+<h3>Tasks:</h3>
+<ol>
+	<li>Create an email alert</li>
+	<li>Create a new task creation</li>
+	<li>Assign actions to milestones</li>
+</ol>
+
+<hr />
+
+<h2 id="instructions">Instructions</h2>
+<ol>
+	<li>Create email alert
+		<ol>
+			<li>Click <b>Create | Workflow &amp; Approvals | Email Alerts</b></li>
+			<li>Click <b>New Email Alert</b></li>
+			<li>Fill in the following information.
+				<dl class="dl-horizontal">
+					<dt>Description</dt>
+					<dd>Breach notification</dd>
+					<dt>Unique Name</dt>
+					<dd>Breach_notification</dd>
+					<dt>Object</dt>
+					<dd>Case</dd>
+					<dt>Email Template</dt>
+					<dd>Support: Case has breached</dd>
+					<dt>Selected Recipients</dt>
+					<dd>Set to the following<br>
+						<img src="{{site.urlRoot}}images/entitlements/milestone_action_email_alert.png" />
+					</dd>
+					<dt>From Email Address</dt>
+					<dd>Current User's email address</dd>
+				</dl>
+			</li>
+			<li>Click <b>Save</b></li>
+		</ol>
+	</li>
+	<li>Create a new task
+		<ol>
+			<li>Click <b>Create | Workflow &amp; Approvals | Tasks</b></li>
+			<li>Click <b>New Task</b></li>
+			<li>Select <b>Object:</b> <i>Case</i></li>
+			<li>Click <b>Next</b></li>
+			<li>Fill in the following information
+				<dl class="dl-horizontal">
+					<dt>Assign To</dt>
+					<dd>SVP, Customer Service &amp; Support</dd>
+					<dt>Subject</dt>
+					<dd>Reach out to customer</dd>
+					<dt>Unique Name</dt>
+					<dd>Reach_out_to_customer</dd>
+					<dt>Due Date</dt>
+					<dd>Rule Trigger Date plus 2 days</dd>
+					<dt>Status</dt>
+					<dd>Not started</dd>
+					<dt>Priority</dt>
+					<dd>Normal</dd>
+				</dl>
+			</li>
+			<li>Click <b>Save</b></li>
+		</ol>
+	</li>
+	<li>Add breach email notification to Premium milestones
+		<ol>
+			<li>Click <b>Customize | Entitlement Management | Entitlement Processes</b></li>
+			<li>Click <b>Premium</b></li>
+			<li>Click <b>Premium</b></li>
+			<li>Click <b>First Response</b> for <i>High priority</i></li>
+			<li>Under <i>Violation Actions</i> click <b>Add Time Trigger</b></li>
+			<li>Choose <i>0 Minutes After</i> <b>First Response</b></i></li>
+			<li>Under the newly created <i>0 Minutes After</i> click <b>Add Workflow Action | Select Existing Action</b></li>
+			<li>Add the <i>Email Alert: Breach Notification</i> and <i>Task: Reach out to customer</i></li>
+			<li>Click <b>Save</b></li>
+			<li>Repeat B through H for all milestones. Remembering to not add the Task action for the Normal priority cases</li>
+		</ol>
+	</li>
+	<li>Add breach email notification to Standard milestones
+		<ol>
+			<li>Click <b>Customize | Entitlement Management | Entitlement Processes</b></li>
+			<li>Click <b>Standard</b></li>
+			<li>Click <b>Standard</b></li>
+			<li>Click <b>First Response</b> for <i>High</i> priority</li>
+			<li>Under <i>Violation Actions</i> click <b>Add Time Trigger</b></li>
+			<li>Choose <i>0 Minutes After</i> <b>First Response</b></li>
+			<li>Under the newly created <i>0 Minutes After</i> click <b>Add Workflow Action | Select Existing Action</b></li>
+			<li>Add the <i>Email Alert: Breach Notification</i> and <i>Task: Reach out to customer</i></li>
+			<li>Click <b>Save</b></li>
+			<li>Repeat B through H for all milestones. Remembering to not add the Task action for the Normal priority cases</li>
+		</ol>
+	</li>
+</ol>
 {% endblock %}

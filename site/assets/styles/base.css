@@ -94,3 +94,8 @@ hr {
 dd, dt {
 	margin-top: 7px;
 }
+
+ul#social li a {
+	color: inherit;
+	font-size: 1.5em;
+}

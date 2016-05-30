@@ -3,6 +3,22 @@
 {% set page.nav = "about" %}
 
 {% block content %}
-<h1>Intro</h1>
-<p>Lori ipsum</p>
+<h1>About Author</h1>
+<div class="row">
+	<div class="col-md-4">
+		<img src="{{site.urlRoot}}images/pcon_headshot.jpg" class="img-circle img-responsive"/>
+	</div>
+	<div class="col-md-8">
+		<h2>Patrick Connelly</h2>
+		<p>Patrick Connelly is a Senior Software Engineer with Red Hat and has been developing on the Salesforce platform since 2009.  Patrick spends his day working in a busy Service Cloud instance.</p>
+		<p>This hands-on training was delivered in 2015 at Dreamforce.</p>
+		<ul class="list-inline" id="social">
+			<li><a href="https://github.com/pcon"><i class="fa fa-github"></i></a></li>
+			<li><a href="https://twitter.com/aelst"><i class="fa fa-twitter"></i></a></li>
+			<li><a href="https://www.flickr.com/photos/grepsy"><i class="fa fa-flickr"></i></a></li>
+			<li><a href="https://www.linkedin.com/in/patrickleeconnelly"><i class="fa fa-linkedin"></i></a></li>
+			<li><a href="http://blog.deadlypenguin.com/blog/feed/"><i class="fa fa-rss"></i></a></li>
+		</ul>
+	</div>
+</div>
 {% endblock %}

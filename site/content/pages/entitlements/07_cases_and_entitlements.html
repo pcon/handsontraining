@@ -7,14 +7,14 @@
 {% block content %}
 <h1>Entitlements</h1>
 <p>The entitlement object defines what your support and how you support it.  The object itself provides the ability to set a start and end date, business hours, entitlement process, and a bunch more information.</p>
-<img src="{{site.urlRoot}}images/entitlements/entitlement_view.png">
+<img class="img-responsive"src="{{site.urlRoot}}images/entitlements/entitlement_view.png">
 <p>Depending on your business model, these entitlements could be associated with a specific asset or service contract.  Entitlements can also be restircted to a per incident model where only a pre-set number of cases can be opened against them.</p>
-<img src="{{site.urlRoot}}images/entitlements/entitlement_milestones.png">
+<img class="img-responsive"src="{{site.urlRoot}}images/entitlements/entitlement_milestones.png">
 <p>After associating a process to your entitlement, you can see the milestones and their timing on the entitlement page.</p>
 <p class="alert alert-info" role="alert"><i class="glyphicon glyphicon-info-sign"></i> Once you've assigned an entitlement process and a case is using that process, you cannot edit that version.</p>
 <h1>Cases</h1>
 <p>After an entitlement is created, you can then assign an entitlement to a case.  After being assigned, case milestones will appear in the milestone section of the case layout (assuming the case meets the criteria for the milestones).</p>
-<img src="{{site.urlRoot}}images/entitlements/entitlement_case_milestones.png">
+<img class="img-responsive"src="{{site.urlRoot}}images/entitlements/entitlement_case_milestones.png">
 <p class="alert alert-info" role="alert"><i class="glyphicon glyphicon-info-sign"></i> You cannot programmatically complete a milestone via clicks. To complete a milestone you have to do it with an Apex trigger. (<a href="https://help.salesforce.com/HTViewHelpDoc?id=entitlements_milestones_trigger.htm">Read More</a>)</p>
 <h1 id="exercise">Exercise 5: Create Entitlements and Use Them</h1>
 

@@ -20,6 +20,17 @@
 		<![endif]-->
 	</head>
 	<body data-spy="scroll" data-target="#sidebar">
+		<nav class="navbar navbar-default visible-xs" style="margin-bottom: 0px;">
+			<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+		</nav>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-3 col-md-2 sidebar" id="sidebar">
@@ -31,7 +42,7 @@
 						<li {% if page.nav == "setup" %}class="active"{% endif %}><a href="02_setup.html">Setup</a></li>
 						<li {% if page.nav == "bh" %}class="active"{% endif %}><a href="03_business_hours_and_holidays.html">Business Hours &amp; Holidays</a>
 							{% if page.nav == "bh" %}
-							<ul class="nav nav-subnav">
+							<ul class="nav nav-subnav hidden-xs">
 								<li><a href="#topic">Topic</a></li>
 								<li><a href="#exercise">Exercise</a></li>
 								<li><a href="#goal">Goal</a></li>
@@ -42,7 +53,7 @@
 						</li>
 						<li {% if page.nav == "management" %}class="active"{% endif %}><a href="04_entitlement_management.html">Entitlement Management</a>
 							{% if page.nav == "management" %}
-							<ul class="nav nav-subnav">
+							<ul class="nav nav-subnav hidden-xs">
 								<li><a href="#topic">Topic</a></li>
 								<li><a href="#exercise">Exercise</a></li>
 								<li><a href="#goal">Goal</a></li>
@@ -53,7 +64,7 @@
 						</li>
 						<li {% if page.nav == "processes" %}class="active"{% endif %}><a href="05_entitlement_processes.html">Entitlement Processes</a>
 							{% if page.nav == "processes" %}
-							<ul class="nav nav-subnav">
+							<ul class="nav nav-subnav hidden-xs">
 								<li><a href="#topic">Topic</a></li>
 								<li><a href="#exercise">Exercise</a></li>
 								<li><a href="#goal">Goal</a></li>
@@ -64,7 +75,7 @@
 						</li>
 						<li {% if page.nav == "actions" %}class="active"{% endif %}><a href="06_milestone_actions.html">Milestone Actions</a>
 							{% if page.nav == "actions" %}
-							<ul class="nav nav-subnav">
+							<ul class="nav nav-subnav hidden-xs">
 								<li><a href="#topic">Topic</a></li>
 								<li><a href="#exercise">Exercise</a></li>
 								<li><a href="#goal">Goal</a></li>
@@ -75,7 +86,7 @@
 						</li>
 						<li {% if page.nav == "cases" %}class="active"{% endif %}><a href="07_cases_and_entitlements.html">Cases &amp; Entitlements</a>
 							{% if page.nav == "cases" %}
-							<ul class="nav nav-subnav">
+							<ul class="nav nav-subnav hidden-xs">
 								<li><a href="#topic">Topic</a></li>
 								<li><a href="#exercise">Exercise</a></li>
 								<li><a href="#goal">Goal</a></li>
@@ -83,7 +94,6 @@
 								<li><a href="#instructions">Instructions</a></li>
 							</ul>
 							{% endif %}
-
 						</li>
 						<li {% if page.nav == "more" %}class="active"{% endif %}><a href="08_more_reading.html">More Reading</a></li>
 					</ul>

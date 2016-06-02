@@ -197,8 +197,22 @@ gulp.task('clean', function () {
         .pipe(rimraf());
 });
 
+gulp.task('cleanstatic', function () {
+    'use strict';
+
+    return gulp.src('dist/static', {read: false})
+        .pipe(rimraf());
+});
+
+gulp.task('static', ['cleanstatic'], function () {
+    'use strict';
+
+    return gulp.src('site/assets/static/**')
+        .pipe(gulp.dest('dist/static'));
+});
+
 gulp.task('content', ['pages']);
-gulp.task('default', ['content', 'styles', 'scripts', 'fonts', 'images']);
+gulp.task('default', ['content', 'styles', 'scripts', 'fonts', 'images', 'static']);
 
 gulp.task('watch', ['default'], function () {
     'use strict';
